@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Форма відгуку</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h1>Залиште ваш відгук</h1>
+    <form method="POST" action="/">
+      {{ form.hidden_tag() }}
+      <div class="form-group">
+        <label for="username">Нікнейм</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          placeholder="Ваш нікнейм"
+        />
+      </div>
+      <div class="form-group">
+        <label for="feedback_text">Відгук</label>
+        {{ form.text.label() }} {{ form.text(class="form-control") }}
+      </div>
+      <button type="submit" class="btn btn-primary">Надіслати</button>
+    </form>
+
+    <h2>Всі відгуки:</h2>
+    <ul>
+      {% for feedback in feedbacks %}
+      <li><strong>{{ feedback.username }}:</strong> {{ feedback.text }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
